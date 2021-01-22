@@ -61,6 +61,12 @@ module Pronto
         before { File.stub(:directory?).with(path).and_return(true) }
         it { should be_falsy }
       end
+
+      context 'missing file' do
+        let(:path) { 'test/does_not_exist' }
+        before { File.stub(:exist?).with(path).and_return(false) }
+        it { should be_falsy }
+      end
     end
   end
 end
